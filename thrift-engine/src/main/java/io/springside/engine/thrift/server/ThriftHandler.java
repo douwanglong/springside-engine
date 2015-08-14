@@ -69,6 +69,8 @@ public class ThriftHandler extends ChannelInboundHandlerAdapter {
 			} catch (Exception e) {
 				logger.error("User exception happen when call processor", e);
 				// TODO: response user wrong exception,
+			} finally {
+				transport.in.release();
 			}
 		}
 	}

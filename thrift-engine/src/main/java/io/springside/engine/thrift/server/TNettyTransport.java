@@ -58,10 +58,4 @@ public class TNettyTransport extends TTransport {
 	public void flush() throws TTransportException {
 		// no-op
 	}
-
-	public ByteBuf getFramedOutput() {
-		ByteBuf frameSizeBuffer = channel.alloc().buffer(4);
-		frameSizeBuffer.writeInt(out.readableBytes());
-		return Unpooled.wrappedBuffer(frameSizeBuffer, out);
-	}
 }
