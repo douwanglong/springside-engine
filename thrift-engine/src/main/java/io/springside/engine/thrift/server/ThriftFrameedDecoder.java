@@ -21,9 +21,11 @@ public class ThriftFrameedDecoder extends ByteToMessageDecoder {
 			return;
 		}
 
+		in.markReaderIndex();
 		int frameLength = in.readInt();
 
 		if (in.readableBytes() < frameLength) {
+			in.resetReaderIndex();
 			return;
 		}
 
