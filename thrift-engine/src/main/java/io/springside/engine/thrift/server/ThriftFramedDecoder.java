@@ -11,13 +11,13 @@ import java.util.List;
  * 
  * @author calvin
  */
-public class ThriftFrameedDecoder extends ByteToMessageDecoder {
+public class ThriftFramedDecoder extends ByteToMessageDecoder {
 
-	private int LENGTH_FIELD_LENGTH = 4;
+	private static final int FRAME_LENGTH_FIELD_LENGTH = 4;
 
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-		if (in.readableBytes() < LENGTH_FIELD_LENGTH) {
+		if (in.readableBytes() < FRAME_LENGTH_FIELD_LENGTH) {
 			return;
 		}
 

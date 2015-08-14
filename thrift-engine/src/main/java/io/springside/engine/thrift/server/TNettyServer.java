@@ -120,11 +120,11 @@ public class TNettyServer extends TServer {
 	}
 
 	private ChannelHandler createThriftFramedDecoder() {
-		return new ThriftFrameedDecoder();
+		return new ThriftFramedDecoder();
 	}
 
 	private ChannelHandler createThriftFramedEncoder() {
-		return new ThriftFrameedEncoder();
+		return new ThriftFramedEncoder();
 	}
 
 	class ShutdownThread extends Thread {
