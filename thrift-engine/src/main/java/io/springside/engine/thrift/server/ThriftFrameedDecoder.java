@@ -6,6 +6,11 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.util.List;
 
+/**
+ * 因为Thrift固定前4位为Frame长度，更简洁直接的写法代替 LengthFieldBasedFrameDecoder
+ * 
+ * @author calvin
+ */
 public class ThriftFrameedDecoder extends ByteToMessageDecoder {
 
 	private int LENGTH_FIELD_LENGTH = 4;
@@ -22,8 +27,7 @@ public class ThriftFrameedDecoder extends ByteToMessageDecoder {
 			return;
 		}
 
-		ByteBuf frame = in.slice(LENGTH_FIELD_LENGTH, frameLength).retain();
-		in.readerIndex(LENGTH_FIELD_LENGTH + frameLength);
+		ByteBuf frame = in.readSlice(frameLength).retain();
 		out.add(frame);
 	}
 }
